@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ENTER键可以让光标移到下一个输入框</title>
+    <script language="javascript"> 
+        function changeEnter() {
+            if (event.keyCode == 13) { event.keyCode = 9; }
+        } 
+    </script>
+</head>
+
+<body>
+    <form id="form1" name="form1" method="post" action="">
+        <p>用户名：
+            <input type="text" name="textfield" id="textfield" onkeydown="changeEnter()" />
+        </p>
+        <p>密码：
+            <input type="text" name="textfield2" id="textfield2" onkeydown="changeEnter()" />
+        </p>
+        <p>
+            <input type="submit" name="button" id="button" value="提交" />
+        </p>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #scrollBox {
+            width: 300px;
+            height: 30px;
+            overflow: hidden;
+            border: 3px solid green;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        #scrollBox1 {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            border: 3px solid green;
+            margin: 20px auto;
+            text-align: center;
+        }
+        ul li {
+            list-style-type: none;
+            line-height: 30px;
+            font-size: 14px;
+            height: 30px;
+            width: 100%;
+        }
+        p {
+            text-align: center;
+        }
+
+        #demo {
+            width: 1000px;
+            overflow: hidden;
+            height: 45px;
+            line-height:  45px;
+            font-size: 13px;
+            margin: 0
+        }
+        #demoin {
+            width: 500px;
+            height: 45px;
+            line-height:  45px;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        #demo #demo1, #demo #demo2 {
+            display: inline
+        }
+    </style>
+</head>
+
+<body>
+    <p>垂直无缝滚动</p>
+    <div id="scrollBox">
+        <ul id="ul1">
+            <li>第1条滚动信息_(:зゝ∠)_</li>
+            <li>第2条滚动信息_(:зゝ∠)_</li>
+            <li>第3条滚动信息_(:зゝ∠)_</li>
+            <li>第4条滚动信息_(:зゝ∠)_</li>
+            <li>第5条滚动信息_(:зゝ∠)_</li>
+            <li>第6条滚动信息_(:зゝ∠)_</li>
+            <li>第7条滚动信息_(:зゝ∠)_</li>
+            <li>第8条滚动信息_(:зゝ∠)_</li>
+            <li>第9条滚动信息_(:зゝ∠)_</li>
+            <li>第10条滚动信息_(:зゝ∠)_</li>
+            <li>第11条滚动信息_(:зゝ∠)_</li>
+            <li>第12条滚动信息_(:зゝ∠)_</li>
+        </ul>
+        <ul id="ul2"></ul>
+    </div>
+    <p>垂直间歇滚动</p>
+    <div id="scrollBox1">
+        <ul id="ul11">
+            <li>第1条滚动信息_(:зゝ∠)_</li>
+            <li>第2条滚动信息_(:зゝ∠)_</li>
+            <li>第3条滚动信息_(:зゝ∠)_</li>
+            <li>第4条滚动信息_(:зゝ∠)_</li>
+            <li>第5条滚动信息_(:зゝ∠)_</li>
+            <li>第6条滚动信息_(:зゝ∠)_</li>
+            <li>第7条滚动信息_(:зゝ∠)_</li>
+            <li>第8条滚动信息_(:зゝ∠)_</li>
+            <li>第9条滚动信息_(:зゝ∠)_</li>
+            <li>第10条滚动信息_(:зゝ∠)_</li>
+            <li>第11条滚动信息_(:зゝ∠)_</li>
+            <li>第12条滚动信息_(:зゝ∠)_</li>
+        </ul>
+        <ul id="ul22"></ul>
+    </div>
+    <div id="demo">
+        <div id="demoin">
+            <div id="demo1">
+                <a href="">测试文字1</a>
+                <a href="">测试文字2</a>
+                <a href="">测试文字3</a>
+                <a href="">测试文字4</a>
+                <a href="">测试文字5</a>
+                <a href="">测试文字7</a>
+                <a href="">测试文字8</a>
+                <a href="">测试文字9</a>
+                <a href="">测试文字10</a>
+                <a href="">测试文字11</a>
+            </div>
+            <div id="demo2"></div>
+        </div>
+    </div>
+    <script>
+        // 水平方向滚动公告
+        window.onload = function() {
+            scrollLeft()
+        }
+        function scrollLeft() {
+            var speed = 20
+            var tab = document.getElementById('demoin')
+            var tab1 = document.getElementById('demo1')
+            var tab2 = document.getElementById('demo2')
+            console.log(tab1.innerHTML)
+            console.log(tab2.offsetWidth)
+
+            tab2.innerHTML = tab1.innerHTML
+            function Marquee() {
+                if (tab2.offsetWidth - tab.scrollLeft <= 0) {
+                    tab.scrollLeft = 0
+                } else {
+                    console.log(tab.scrollLeft)
+                    tab.scrollLeft++
+                }
+
+            }
+            var timer = setInterval(Marquee, speed)
+            tab.onmouseover = function() {
+                clearInterval(timer)
+            };
+            tab.onmouseout = function() {
+                timer = setInterval(Marquee, speed)
+            }
+        }
+
+
+
+        //垂直无缝滚动
+        var area = document.getElementById("scrollBox");
+        var ul1 = document.getElementById("ul1");
+        var ul2 = document.getElementById("ul2");
+        // console.log(ul1.innerHTML)
+        ul2.innerHTML = ul1.innerHTML;
+        function scrollUp() {
+            if (area.scrollTop > ul1.offsetHeight) {
+                area.scrollTop = 0;
+            } else {
+                area.scrollTop++;
+            }
+        }
+        var speed = 50;
+        var myScroll = setInterval('scrollUp()', speed);
+        area.onmouseover = function () {
+            clearInterval(myScroll);
+        };
+        area.onmouseout = function () {
+            myScroll = setInterval('scrollUp()', speed);
+        };
+
+
+
+        //垂直间歇滚动
+        var area1 = document.getElementById("scrollBox1");
+        var ul11 = document.getElementById("ul11");
+        var ul22 = document.getElementById("ul22");
+        ul22.innerHTML = ul11.innerHTML;
+        var iHeight = 30;
+        var speed1 = 50;
+        var delay = 2000;
+        area1.scrollTop = 0;
+        var time;
+        function startMove() {
+            area1.scrollTop++;
+            time = setInterval("scrollUp1()", speed1);
+        }
+        function scrollUp1() {
+            area1.scrollTop++;
+            if (area1.scrollTop % iHeight == 0) {
+                clearInterval(time);
+                setTimeout("startMove()", delay);
+            } else {
+                area1.scrollTop++;
+                if (area1.scrollTop >= area1.scrollHeight / 2) {
+                    area1.scrollTop = 0;
+                }
+            }
+        }
+        setTimeout("startMove()", delay);
+
+    </script>
+</body>
+
+</html>
